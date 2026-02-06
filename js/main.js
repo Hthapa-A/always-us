@@ -1,12 +1,23 @@
 function startLove() {
-  const musicDiv = document.getElementById("musicPlayer");
-  musicDiv.innerHTML = `
-    <iframe width="0" height="0"
-      src="https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=1&rel=0"
-      allow="autoplay; encrypted-media">
-    </iframe>
-  `;
+  if (!sessionStorage.getItem("musicStarted")) {
+    const iframe = document.createElement("iframe");
+    iframe.src = "music.html";
+    iframe.style.display = "none";
+    iframe.id = "bgMusic";
+    document.body.appendChild(iframe);
+    sessionStorage.setItem("musicStarted", "true");
+  }
   window.location.href = "timeline.html";
+}
+
+function loadMusic() {
+  if (sessionStorage.getItem("musicStarted") && !document.getElementById("bgMusic")) {
+    const iframe = document.createElement("iframe");
+    iframe.src = "music.html";
+    iframe.style.display = "none";
+    iframe.id = "bgMusic";
+    document.body.appendChild(iframe);
+  }
 }
 
 function runAway(btn) {
@@ -16,6 +27,5 @@ function runAway(btn) {
 }
 
 function showLove() {
-  document.getElementById("finalLove").style.display = "block";
+  document.getElementById("finalLove").classList.remove("hidden");
 }
-

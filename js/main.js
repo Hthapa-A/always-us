@@ -26,6 +26,6 @@ function nextStep() {
 function runAway(btn) {
   startMusic();
   btn.style.position = "absolute";
-  btn.style.left = Math.random() * 70 + "vw";
-  btn.style.top = Math.random() * 70 + "vh";
+  btn.style.left = Math.random() * 75 + "vw";
+  btn.style.top = Math.random() * 75 + "vh";
 }

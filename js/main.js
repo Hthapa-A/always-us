@@ -1,22 +1,41 @@
 function startLove() {
-  if (!sessionStorage.getItem("musicStarted")) {
-    const iframe = document.createElement("iframe");
-    iframe.src = "music.html";
-    iframe.style.display = "none";
-    iframe.id = "bgMusic";
-    document.body.appendChild(iframe);
-    sessionStorage.setItem("musicStarted", "true");
+  let music = document.getElementById("bgMusic");
+
+  if (!music) {
+    music = document.createElement("audio");
+    music.src = "mp3.mp3";
+    music.id = "bgMusic";
+    music.loop = true;
+    music.autoplay = true;
+    music.volume = 0.8;
+    document.body.appendChild(music);
   }
-  window.location.href = "timeline.html";
+
+  sessionStorage.setItem("musicStarted", "true");
+
+  music.play().catch(() => {
+    console.log("Autoplay blocked until user interaction");
+  });
+
+  setTimeout(() => {
+    window.location.href = "timeline.html";
+  }, 700);
 }
 
 function loadMusic() {
-  if (sessionStorage.getItem("musicStarted") && !document.getElementById("bgMusic")) {
-    const iframe = document.createElement("iframe");
-    iframe.src = "music.html";
-    iframe.style.display = "none";
-    iframe.id = "bgMusic";
-    document.body.appendChild(iframe);
+  if (sessionStorage.getItem("musicStarted")) {
+    let music = document.getElementById("bgMusic");
+
+    if (!music) {
+      music = document.createElement("audio");
+      music.src = "mp3.mp3";
+      music.id = "bgMusic";
+      music.loop = true;
+      music.autoplay = true;
+      music.volume = 0.8;
+      document.body.appendChild(music);
+      music.play().catch(() => {});
+    }
   }
 }
 

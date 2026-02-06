@@ -1,31 +1,31 @@
+let currentStep = 1;
 let musicStarted = false;
 
 function startMusic() {
-  if (!musicStarted) {
-    const music = document.getElementById("bgMusic");
-    music.volume = 0.8;
-    music.play().catch(() => {});
-    musicStarted = true;
-  }
+  if (musicStarted) return;
+
+  const music = document.getElementById("bgMusic");
+  music.volume = 0.8;
+  music.play().catch(() => {});
+  musicStarted = true;
 }
 
-function showSection(id) {
+function nextStep() {
   startMusic();
 
-  document.querySelectorAll("section").forEach(sec => {
-    sec.classList.remove("active");
-  });
+  const current = document.getElementById(`step${currentStep}`);
+  current.classList.remove("active");
+  current.classList.add("hidden");
 
-  document.getElementById(id).classList.add("active");
+  currentStep++;
+
+  const next = document.getElementById(`step${currentStep}`);
+  next.classList.add("active");
 }
 
 function runAway(btn) {
   startMusic();
   btn.style.position = "absolute";
-  btn.style.left = Math.random() * 80 + "vw";
-  btn.style.top = Math.random() * 80 + "vh";
-}
-
-function showLove() {
-  document.getElementById("finalLove").classList.remove("hidden");
+  btn.style.left = Math.random() * 70 + "vw";
+  btn.style.top = Math.random() * 70 + "vh";
 }

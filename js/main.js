@@ -1,45 +1,26 @@
-function startLove() {
-  let music = document.getElementById("bgMusic");
+let musicStarted = false;
 
-  if (!music) {
-    music = document.createElement("audio");
-    music.src = "mp3.mp3";
-    music.id = "bgMusic";
-    music.loop = true;
-    music.autoplay = true;
+function startMusic() {
+  if (!musicStarted) {
+    const music = document.getElementById("bgMusic");
     music.volume = 0.8;
-    document.body.appendChild(music);
+    music.play().catch(() => {});
+    musicStarted = true;
   }
-
-  sessionStorage.setItem("musicStarted", "true");
-
-  music.play().catch(() => {
-    console.log("Autoplay blocked until user interaction");
-  });
-
-  setTimeout(() => {
-    window.location.href = "timeline.html";
-  }, 700);
 }
 
-function loadMusic() {
-  if (sessionStorage.getItem("musicStarted")) {
-    let music = document.getElementById("bgMusic");
+function showSection(id) {
+  startMusic();
 
-    if (!music) {
-      music = document.createElement("audio");
-      music.src = "mp3.mp3";
-      music.id = "bgMusic";
-      music.loop = true;
-      music.autoplay = true;
-      music.volume = 0.8;
-      document.body.appendChild(music);
-      music.play().catch(() => {});
-    }
-  }
+  document.querySelectorAll("section").forEach(sec => {
+    sec.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
 }
 
 function runAway(btn) {
+  startMusic();
   btn.style.position = "absolute";
   btn.style.left = Math.random() * 80 + "vw";
   btn.style.top = Math.random() * 80 + "vh";

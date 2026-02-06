@@ -5,18 +5,77 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
 </head>
-<body class="center-screen">
+<body>
 
-<div class="moon-banner"></div>
+<audio id="bgMusic" src="mp3.mp3" loop></audio>
 
-<h1 class="fade-in">Hey ALsA♥️ ❤️</h1>
-<p class="soft-text">I have something to tell you…</p>
-<p class="soft-text">Are you willing to hear me?</p>
+<!-- INDEX -->
+<section id="index" class="active center">
+  <div class="moon-banner"></div>
 
-<div class="btn-group">
-  <button class="btn" onclick="startLove()">Yes ❤️</button>
+  <h1 class="fade-in">Hey ALsA♥️ ❤️</h1>
+  <p class="soft">I have something to tell you…</p>
+  <p class="soft">Are you willing to hear me?</p>
+
+  <button class="btn" onclick="showSection('timeline')">Yes ❤️</button>
   <button class="btn" onmouseover="runAway(this)">No 😜</button>
-</div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline" class="center">
+  <h1>Do you love me? ❤️</h1>
+
+  <button class="btn" onclick="showSection('gallery')">Yes, always 🥰</button>
+  <button class="btn" onmouseover="runAway(this)">No 🙄</button>
+
+  <img class="gif" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="center">
+  <h1>How much do you love me? ❤️‍🔥</h1>
+
+  <button class="btn" onclick="showSection('letter')">To the moon 🌙</button>
+  <button class="btn" onclick="showSection('letter')">Infinity ♾️</button>
+  <button class="btn" onclick="showSection('letter')">More than words 💖</button>
+
+  <img class="gif" src="https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif">
+</section>
+
+<!-- LETTER -->
+<section id="letter" class="center">
+  <div class="heart-box">
+    <h1>Will you marry me<br>ALsA♥️? 💍<br>🩷🩵</h1>
+  </div>
+
+  <button class="btn big" onclick="showSection('future')">YES 😭❤️</button>
+  <button class="btn" onmouseover="runAway(this)">No 😳</button>
+</section>
+
+<!-- FUTURE -->
+<section id="future" class="center">
+  <h1 class="fade-in">Come here… 🤍</h1>
+
+  <img class="gif" src="https://media.giphy.com/media/od5H3PmEG5EVq/giphy.gif">
+
+  <p class="final-text">
+    No matter the distance.<br>
+    No matter the struggles.<br>
+    It’s always been you.<br>
+    It will always be us. ❤️
+  </p>
+
+  <button class="btn big" onclick="showLove()">Forever ❤️</button>
+
+  <div id="finalLove" class="hidden">
+    <p class="final-text" style="animation: glow 2s infinite alternate;">
+      Happy Valentine’s Day, my love 💝<br>
+      You are my today.<br>
+      You are my always.<br>
+      You are my forever. 💍
+    </p>
+  </div>
+</section>
 
 <script src="js/main.js"></script>
 </body>

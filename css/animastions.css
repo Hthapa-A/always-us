@@ -1,21 +1,17 @@
-.star {
-  position: fixed;
-  width: 5px;
-  height: 5px;
-  background: white;
-  border-radius: 50%;
-  animation: floatStar 8s linear infinite;
-  opacity: 0.8;
+.fade-in {
+  animation: fadeIn 2s ease forwards;
 }
 
-@keyframes floatStar {
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
   from {
-    transform: translateY(100vh);
-    opacity: 0;
+    text-shadow: 0 0 10px #fff;
   }
   to {
-    transform: translateY(-10vh);
-    opacity: 1;
+    text-shadow: 0 0 30px #ffb6d9, 0 0 60px #6a85ff;
   }
 }
-

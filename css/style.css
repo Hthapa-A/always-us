@@ -3,8 +3,10 @@
 :root {
   --pink: #ff6fae;
   --blue: #6fb7ff;
+  --glass: rgba(15,18,37,0.6);
 }
 
+/* 🌌 BODY */
 body {
   margin: 0;
   height: 100vh;
@@ -16,16 +18,48 @@ body {
   color: white;
 }
 
-/* 🌙 Banner */
+/* 💖 FLOATING HEARTS + CELEBRATION */
+body::after {
+  content: "🩷 🩵 💖 💕 💗 🎉 🎈 🩷 🩵 💖";
+  position: fixed;
+  inset: 0;
+  font-size: 2rem;
+  pointer-events: none;
+  opacity: 0.28;
+  animation: heartFloat 18s linear infinite;
+}
+
+@keyframes heartFloat {
+  from { transform: translateY(110vh); }
+  to   { transform: translateY(-130vh); }
+}
+
+/* 🌙 MOON BANNER */
 .moon-banner {
   height: 240px;
   background:
-    linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.8)),
+    linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.85)),
     url("../IMG_8251.jpeg") center/cover no-repeat;
   border-radius: 0 0 40px 40px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  position: relative;
 }
 
+.moon-banner::after {
+  content: "✨ ✨ ✨ ✨ ✨";
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  font-size: 1.5rem;
+  animation: sparkle 10s linear infinite;
+}
+
+@keyframes sparkle {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(50%); }
+}
+
+/* 📦 CONTAINER */
 .container {
   height: calc(100vh - 240px);
   display: flex;
@@ -34,16 +68,18 @@ body {
   position: relative;
 }
 
-/* 💌 Cards */
+/* 💌 CARDS */
 .card {
   position: absolute;
   width: 90%;
   max-width: 520px;
   padding: 45px 35px;
-  border-radius: 30px;
-  background: rgba(15,18,37,0.6);
+  border-radius: 32px;
+  background: var(--glass);
   backdrop-filter: blur(18px);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+  box-shadow:
+    0 0 35px rgba(255,105,180,0.25),
+    0 30px 80px rgba(0,0,0,0.45);
   text-align: center;
   opacity: 0;
   transform: scale(0.9) translateY(40px);
@@ -62,9 +98,11 @@ body {
   transform: scale(0.75) translateY(-60px);
 }
 
+/* ✨ TEXT */
 h1 {
   font-family: 'Playfair Display', serif;
   font-size: 2.6rem;
+  margin-bottom: 10px;
 }
 
 p {
@@ -80,27 +118,39 @@ p {
   display: block;
   box-shadow:
     0 15px 40px rgba(0,0,0,0.4),
-    0 0 30px rgba(255,105,180,0.4);
+    0 0 30px rgba(255,105,180,0.45);
   animation: floatGif 4s ease-in-out infinite;
 }
 
 .big-gif {
-  width: 230px;
+  width: 240px;
 }
 
-/* 🎀 Buttons */
+@keyframes floatGif {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+/* 🎀 BUTTONS */
 .btn-group {
   margin-top: 30px;
 }
 
 .btn {
-  padding: 14px 30px;
+  padding: 14px 32px;
   margin: 10px;
   border-radius: 40px;
   border: none;
   font-size: 1.15rem;
   cursor: pointer;
   color: white;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 20px 45px rgba(255,105,180,0.7);
 }
 
 .btn.yes {
@@ -112,23 +162,38 @@ p {
 }
 
 .btn.big {
-  font-size: 1.45rem;
-  padding: 18px 44px;
+  font-size: 1.5rem;
+  padding: 18px 46px;
 }
 
-/* 💍 Heart */
+/* 💍 HEART QUESTION */
 .heart-box {
   font-size: 2.4rem;
   animation: heartbeat 2.5s infinite;
 }
 
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.15); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* 💖 FINAL */
 .final-text {
   font-size: 1.45rem;
   margin-top: 20px;
 }
 
 .heart-final {
-  font-size: 3.6rem;
+  font-size: 3.8rem;
   margin-top: 25px;
   animation: pulseGlow 2.5s infinite;
+}
+
+@keyframes pulseGlow {
+  0% { text-shadow: 0 0 10px pink; }
+  50% { text-shadow: 0 0 35px hotpink; }
+  100% { text-shadow: 0 0 10px pink; }
 }
